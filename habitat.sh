@@ -8,7 +8,7 @@ prompt_confirm() {
 		case $REPLY in 
 			[yY]) echo ; return 0 ;;
 			[nN]) echo ; return 1 ;;
-			*) printf " invalid input"
+			*) printf " invalid input" ;;
 		esac
 	done
 }
@@ -49,7 +49,7 @@ hab() {
 	  _hab_create "$NAME" "$VERSION"
 	  ;;
 	activate)
-	  $NAME=$1
+	  NAME=$1
 	  HPATH="$HAB_DIR/$NAME"
 	  if ( ! _hab_exists $NAME ); then
 	    echo "habitat $NAME not found!"
@@ -153,10 +153,10 @@ _hab_autocomplete() {
 	  prev_prev="${COMP_WORDS[COMP_CWORD-2]}"
 	fi
 	
-	local command="activate clone delete create list"
+	local commands="activate clone delete create list"
 	local habitats=$(hab list | awk 'NR>2 {print $1}')
 	
-	if [$COMP_CWORD -eq 1 ]; then
+	if [ $COMP_CWORD -eq 1 ]; then
 	  COMPREPLY=( $(compgen -W "$commands" -- "$cur") )
 	elif [[ "$prev" =~ ^(activate|clone|delete)$ ]]; then
 	  COMPREPLY=( $(compgen -W "$habitats" -- "$cur") )
