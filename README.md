@@ -34,4 +34,7 @@ hab activate new_env
 python -m pip install pandas
 ```
 
+### on clone
+> Why does `hab clone` just reinstall all the packages?
 
+"Cloning" a venv (through something like a copy) is non trivial, you actually have to go and modify files within the venv. It's easier to just take all the packages and reinstall them.
