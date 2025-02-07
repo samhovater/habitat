@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 USAGE="
 Usage: $0 [system|local] /path/to/hab.sh
   system - install must be run as sudo!
